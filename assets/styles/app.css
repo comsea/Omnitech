@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ombrage {
+    text-shadow: gray 2px 2px 5px;
+}
+
+.formes {
+    transform:skew(0, 10deg);
+}

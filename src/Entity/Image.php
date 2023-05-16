@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
@@ -18,6 +20,14 @@ class Image
 
     #[ORM\Column(length: 510)]
     private ?string $path = null;
+
+    #[ORM\ManyToMany(targetEntity: News::class, mappedBy: 'gallery')]
+    private Collection $gallery;
+
+    public function __construct()
+    {
+        $this->gallery = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -46,5 +56,37 @@ class Image
         $this->path = $path;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, News>
+     */
+    public function getGallery(): Collection
+    {
+        return $this->gallery;
+    }
+
+    public function addGallery(News $gallery): self
+    {
+        if (!$this->gallery->contains($gallery)) {
+            $this->gallery->add($gallery);
+            $gallery->addGallery($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(News $gallery): self
+    {
+        if ($this->gallery->removeElement($gallery)) {
+            $gallery->removeGallery($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

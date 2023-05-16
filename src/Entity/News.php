@@ -41,7 +41,7 @@ class News
     #[ORM\JoinColumn(nullable: false)]
     private ?NewsCategory $newsCategory = null;
 
-    #[ORM\ManyToMany(targetEntity: Image::class)]
+    #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'gallery')]
     private Collection $gallery;
 
     public function __construct()

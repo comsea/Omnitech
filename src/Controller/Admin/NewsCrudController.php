@@ -57,6 +57,8 @@ class NewsCrudController extends AbstractCrudController
                 ->setUploadedFileNamePattern('[contenthash].[extension]'),
             AssociationField::new('newsCategory')
                 ->setLabel('Catégorie'),
+            AssociationField::new('gallery')
+                ->setLabel('Galerie d\'image'),
             TextEditorField::new('description')
                 ->setLabel('Description'),
             BooleanField::new('is_published')

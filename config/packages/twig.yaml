@@ -1,5 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        public_dir: '%app.public_dir%'
+        base_path: '%app.base_path%'
 
 when@test:
     twig:

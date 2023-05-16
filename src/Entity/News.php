@@ -37,7 +37,7 @@ class News
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'newsCategory')]
     #[ORM\JoinColumn(nullable: false)]
     private ?NewsCategory $newsCategory = null;
 

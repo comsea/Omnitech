@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\NewsCategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NewsCategoryRepository::class)]
@@ -18,6 +20,14 @@ class NewsCategory
 
     #[ORM\Column]
     private ?bool $is_active = null;
+
+    #[ORM\OneToMany(mappedBy: 'newsCategory', targetEntity: News::class)]
+    private Collection $newsCategory;
+
+    public function __construct()
+    {
+        $this->newsCategory = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -46,5 +56,39 @@ class NewsCategory
         $this->is_active = $is_active;
 
         return $this;
+    }
+    /**
+     * @return Collection<int, News>
+     */
+    public function getNewsCategory(): Collection
+    {
+        return $this->newsCategory;
+    }
+
+    public function addNewsCategory(News $newsCategory): self
+    {
+        if (!$this->newsCategory->contains($newsCategory)) {
+            $this->newsCategory->add($newsCategory);
+            $newsCategory->setNewsCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtre(News $newsCategory): self
+    {
+        if ($this->newsCategory->removeElement($newsCategory)) {
+            // set the owning side to null (unless already changed)
+            if ($newsCategory->getNewsCategory() === $this) {
+                $newsCategory->setNewsCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

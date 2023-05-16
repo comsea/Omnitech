@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\NewsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,18 @@ class News
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?NewsCategory $newsCategory = null;
+
+    #[ORM\ManyToMany(targetEntity: Image::class)]
+    private Collection $gallery;
+
+    public function __construct()
+    {
+        $this->gallery = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +134,42 @@ class News
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getNewsCategory(): ?NewsCategory
+    {
+        return $this->newsCategory;
+    }
+
+    public function setNewsCategory(?NewsCategory $newsCategory): self
+    {
+        $this->newsCategory = $newsCategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getGallery(): Collection
+    {
+        return $this->gallery;
+    }
+
+    public function addGallery(Image $gallery): self
+    {
+        if (!$this->gallery->contains($gallery)) {
+            $this->gallery->add($gallery);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Image $gallery): self
+    {
+        $this->gallery->removeElement($gallery);
 
         return $this;
     }

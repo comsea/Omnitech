@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\WorkShopRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,22 @@ class WorkShop
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?ArticleCategory $articleCategory = null;
+
+    #[ORM\ManyToMany(targetEntity: Image::class)]
+    private Collection $gallery;
+
+    #[ORM\ManyToMany(targetEntity: Supplier::class)]
+    private Collection $supplier;
+
+    public function __construct()
+    {
+        $this->gallery = new ArrayCollection();
+        $this->supplier = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +168,66 @@ class WorkShop
     public function setUpdatedAt(\DateTimeImmutable $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getArticleCategory(): ?ArticleCategory
+    {
+        return $this->articleCategory;
+    }
+
+    public function setArticleCategory(?ArticleCategory $articleCategory): self
+    {
+        $this->articleCategory = $articleCategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getGallery(): Collection
+    {
+        return $this->gallery;
+    }
+
+    public function addGallery(Image $gallery): self
+    {
+        if (!$this->gallery->contains($gallery)) {
+            $this->gallery->add($gallery);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Image $gallery): self
+    {
+        $this->gallery->removeElement($gallery);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Supplier>
+     */
+    public function getSupplier(): Collection
+    {
+        return $this->supplier;
+    }
+
+    public function addSupplier(Supplier $supplier): self
+    {
+        if (!$this->supplier->contains($supplier)) {
+            $this->supplier->add($supplier);
+        }
+
+        return $this;
+    }
+
+    public function removeSupplier(Supplier $supplier): self
+    {
+        $this->supplier->removeElement($supplier);
 
         return $this;
     }

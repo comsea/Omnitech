@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SupplierRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SupplierRepository::class)]
@@ -21,6 +23,14 @@ class Supplier
 
     #[ORM\Column]
     private ?bool $is_active = null;
+
+    #[ORM\ManyToMany(targetEntity: WorkShop::class, mappedBy: 'supplier')]
+    private Collection $supplier;
+
+    public function __construct()
+    {
+        $this->supplier = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -61,5 +71,37 @@ class Supplier
         $this->is_active = $is_active;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, WorkShop>
+     */
+    public function getSupplier(): Collection
+    {
+        return $this->supplier;
+    }
+
+    public function addSupplier(WorkShop $supplier): self
+    {
+        if (!$this->supplier->contains($supplier)) {
+            $this->supplier->add($supplier);
+            $supplier->addSupplier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSupplier(WorkShop $supplier): self
+    {
+        if ($this->supplier->removeElement($supplier)) {
+            $supplier->removeSupplier($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

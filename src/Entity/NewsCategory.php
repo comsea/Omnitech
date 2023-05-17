@@ -57,6 +57,7 @@ class NewsCategory
 
         return $this;
     }
+
     /**
      * @return Collection<int, News>
      */

@@ -24,9 +24,13 @@ class Image
     #[ORM\ManyToMany(targetEntity: News::class, mappedBy: 'gallery')]
     private Collection $gallery;
 
+    #[ORM\ManyToMany(targetEntity: WorkShop::class, mappedBy: 'gallery')]
+    private Collection $gallerys;
+
     public function __construct()
     {
         $this->gallery = new ArrayCollection();
+        $this->gallerys = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,5 +92,32 @@ class Image
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, WorkShop>
+     */
+    public function getGallerys(): Collection
+    {
+        return $this->gallerys;
+    }
+
+    public function addGallerys(WorkShop $gallerys): self
+    {
+        if (!$this->gallery->contains($gallerys)) {
+            $this->gallery->add($gallerys);
+            $gallerys->addGallery($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallerys(WorkShop $gallerys): self
+    {
+        if ($this->gallery->removeElement($gallerys)) {
+            $gallerys->removeGallery($this);
+        }
+
+        return $this;
     }
 }

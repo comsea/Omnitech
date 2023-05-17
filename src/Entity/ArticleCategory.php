@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleCategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleCategoryRepository::class)]
@@ -18,6 +20,14 @@ class ArticleCategory
 
     #[ORM\Column]
     private ?bool $is_active = null;
+
+    #[ORM\OneToMany(mappedBy: 'articleCategory', targetEntity: WorkShop::class)]
+    private Collection $articleCategory;
+
+    public function __construct()
+    {
+        $this->articleCategory = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -46,5 +56,40 @@ class ArticleCategory
         $this->is_active = $is_active;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Workshop>
+     */
+    public function getArticleCategory(): Collection
+    {
+        return $this->articleCategory;
+    }
+
+    public function addArticleCategory(WorkShop $articleCategory): self
+    {
+        if (!$this->articleCategory->contains($articleCategory)) {
+            $this->articleCategory->add($articleCategory);
+            $articleCategory->setArticleCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticleCategory(WorkShop $articleCategory): self
+    {
+        if ($this->articleCategory->removeElement($articleCategory)) {
+            // set the owning side to null (unless already changed)
+            if ($articleCategory->getArticleCategory() === $this) {
+                $articleCategory->setArticleCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

@@ -3,6 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ContractSector;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ContractSectorCrudController extends AbstractCrudController
@@ -12,14 +18,24 @@ class ContractSectorCrudController extends AbstractCrudController
         return ContractSector::class;
     }
 
-    /*
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Secteurs de contrat')
+            ->setEntityLabelInSingular('Secteur de contrat');
+    }
+
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')
+                ->hideOnForm()
+                ->hideOnIndex(),
+            TextField::new('name')
+                ->setLabel('Secteur'),
+            BooleanField::new('is_active')
+                ->setLabel('Activation'),
         ];
     }
-    */
 }

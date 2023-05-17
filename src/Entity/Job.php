@@ -31,10 +31,10 @@ class Job
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\ManyToMany(targetEntity: ContractType::class)]
+    #[ORM\ManyToMany(targetEntity: ContractType::class, inversedBy: 'contractType')]
     private Collection $contractType;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'contractSector')]
     #[ORM\JoinColumn(nullable: false)]
     private ?ContractSector $contractSector = null;
 

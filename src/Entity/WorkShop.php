@@ -43,14 +43,14 @@ class WorkShop
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'articleCategory')]
     #[ORM\JoinColumn(nullable: false)]
     private ?ArticleCategory $articleCategory = null;
 
-    #[ORM\ManyToMany(targetEntity: Image::class)]
+    #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'gallery')]
     private Collection $gallery;
 
-    #[ORM\ManyToMany(targetEntity: Supplier::class)]
+    #[ORM\ManyToMany(targetEntity: Supplier::class, inversedBy: 'supplier')]
     private Collection $supplier;
 
     public function __construct()

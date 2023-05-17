@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ContractTypeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContractTypeRepository::class)]
@@ -18,6 +20,14 @@ class ContractType
 
     #[ORM\Column]
     private ?bool $is_active = null;
+
+    #[ORM\ManyToMany(targetEntity: Job::class, mappedBy: 'contractType')]
+    private Collection $contractType;
+
+    public function __construct()
+    {
+        $this->contractType = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -46,5 +56,37 @@ class ContractType
         $this->is_active = $is_active;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Job>
+     */
+    public function getContractType(): Collection
+    {
+        return $this->contractType;
+    }
+
+    public function addContractType(Job $contractType): self
+    {
+        if (!$this->contractType->contains($contractType)) {
+            $this->contractType->add($contractType);
+            $contractType->addContractType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContractType(Job $contractType): self
+    {
+        if ($this->contractType->removeElement($contractType)) {
+            $contractType->removeContractType($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

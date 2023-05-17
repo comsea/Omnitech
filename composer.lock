@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a27175d9db20c70bc5794b597f35c1f3",
+    "content-hash": "f399e47432eb29e2b7695dc8801cb022",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3501,7 +3501,6 @@
                 "symfony/var-dumper": "^5.4|^6.0"
             },
             "suggest": {
-                "symfony/security-core": "For hashing users passwords.",
                 "symfony/security-csrf": "For protecting forms against CSRF attacks.",
                 "symfony/twig-bridge": "For templating with Twig.",
                 "symfony/validator": "For form validation."

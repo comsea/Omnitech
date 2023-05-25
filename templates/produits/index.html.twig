@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OMNITECHNIQUE | Produits{% endblock %}
+
+{% block header %}
+    <div class="h-[50vh] w-full flex flex-col justify-center items-center relative">
+        <video autoplay muted loop class="h-full w-full object-cover absolute -z-10">
+            <source src="{{ asset("build/videos/bg.mp4") }}" type="video/mp4" class="h-full w-full">
+        </video>
+        <div class="w-full flex flex-col justify-center items-center space-y-10">
+            <img src="{{ asset("build/images/logo.png") }}" alt="Logo Omnitechnique" class="w-1/3">
+            <h1 class="text-white font-bold text-7xl">NOS PRODUITS</h1>
+        </div>
+    </div>
+{% endblock %} 
+
+{% block body %}
+    <div class="bg-[#D7D960] text-[#294690] text-xl font-semibold px-5 py-4 w-full flex z-30 flex-row lg:justify-center justify-end items-center shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-px lg:mt-0">
+        <div id="nav" class="hidden lg:flex flex-row items-center lg:space-x-12 space-y-2 lg:space-y-0">
+            <a href="" title="Accueil"  class="hover:text-black">Tous</a>
+            <a title="Présentation" class="hover:text-black">Contre d'usinage</a>
+            <a title="Produits" class="hover:text-black">Tournage</a>
+            <a title="Services" class="hover:text-black">Electroerosion</a>
+        </div>
+        <div id="toggle-button" class="my-2 text-lg text-black lg:hidden flex ml-3">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+
+    <div class="font-bold text-5xl relative flex justify-center items-center mt-20">
+        <h2 class="ombrage">CENTRE D'USINAGE</h2>
+        <div class="absolute -z-10 -left-5 bg-[#D7D960] w-16 h-20 shadow-xl formes"></div>
+    </div>
+
+    <div class="font-bold text-5xl relative flex justify-center items-center mt-20">
+        <h2 class="ombrage">TOURNAGE</h2>
+        <div class="absolute -z-10 -left-5 bg-[#D7D960] w-16 h-20 shadow-xl formes"></div>
+    </div>
+
+    <div class="font-bold text-5xl relative flex justify-center items-center mt-20">
+        <h2 class="ombrage">ELECTROEROSION</h2>
+        <div class="absolute -z-10 -left-5 bg-[#D7D960] w-16 h-20 shadow-xl formes"></div>
+    </div>
+
+{% endblock %}

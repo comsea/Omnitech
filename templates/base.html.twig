@@ -9,11 +9,14 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/slick/slick.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/slick/slick-theme.css') }}"/>
+
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="w-full flex flex-col items-center text-xl">
+    <body class="w-full flex flex-col items-center text-2xl">
         {% block header %}{% endblock %} 
         <div class="sticky top-0 bg-[#294690] text-white text-xl font-semibold px-5 py-4 w-full flex z-40 flex-row lg:justify-center justify-end items-center shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-px lg:mt-0">
             <div id="nav" class="hidden lg:flex flex-row items-center lg:space-x-12 space-y-2 lg:space-y-0">
@@ -21,7 +24,7 @@
                 <a href="{{ path('app_presentation') }}" title="Présentation" class="hover:text-[#D7D960]">Présentation</a>
                 <a href="{{ path('app_produits') }}" title="Produits" class="hover:text-[#D7D960]">Produits</a>
                 <a href="{{ path('app_services') }}" title="Services" class="hover:text-[#D7D960]">Services</a>
-                <a title="Occasions" class="hover:text-[#D7D960]">Occasions</a>
+                <a title="Ventes direct" class="hover:text-[#D7D960]">Ventes direct</a>
                 <a href="{{ path('app_actualites') }}" title="Actualités" class="hover:text-[#D7D960]">Actualités</a>
                 <a href="{{ path('app_recrutement') }}" title="Recrutement" class="hover:text-[#D7D960]">Recrutement</a>
                 <a href="{{ path('app_contact') }}" class="bg-[#D7D960] hover:bg-white text-[#294690] rounded px-4 py-2" title="Contact">Contact</a>
@@ -41,5 +44,9 @@
         <div class="w-full bg-[#294690] text-white text-xl font-semibold px-5 py-4 flex z-40 flex-row lg:justify-center justify-end items-center mt-px lg:mt-0">
             <p>2023 Copyright : <a href="https://comsea.fr/" class="hover:underline">COMSEA</a>   |   Tous droits Réservés   |   <a href="https://comsea.fr/" class="hover:underline">Mentions légales</a>   |   <a href="https://comsea.fr/" class="hover:underline">Politique de confidentialité</a>   |   <a href="https://comsea.fr/" class="hover:underline">Modifier les cookies</a></p>
         </div>
+        
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="{{ asset("build/slick/slick.min.js") }}"></script>
     </body>
 </html>

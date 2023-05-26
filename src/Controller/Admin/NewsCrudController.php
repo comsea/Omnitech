@@ -33,6 +33,7 @@ class NewsCrudController extends AbstractCrudController
     {
         $publicDir = $this->getParameter('app.public_dir');
         $basePath = $this->getParameter('app.base_path');
+
         return [
             IdField::new('id')
                 ->hideOnForm()
@@ -64,7 +65,8 @@ class NewsCrudController extends AbstractCrudController
             BooleanField::new('is_published')
                 ->setLabel('Publication'),
             DateTimeField::new('created_at')
-                ->setLabel('Créé le'),
+                ->setLabel('Créé le')
+                ->onlyWhenCreating(),
             DateTimeField::new('updated_at')
                 ->setLabel('Modifié le'),
         ];

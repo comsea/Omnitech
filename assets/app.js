@@ -8,5 +8,13 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
-// start the Stimulus application
-import './bootstrap';
+// Slider page recrutement
+$(document).ready(function(){
+    $('.recrutement').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        dots: true,
+        arrows: true
+      });
+  });

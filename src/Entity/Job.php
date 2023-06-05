@@ -38,6 +38,9 @@ class Job
     #[ORM\JoinColumn(nullable: false)]
     private ?ContractSector $contractSector = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pdf = null;
+
     public function __construct()
     {
         $this->contractType = new ArrayCollection();
@@ -140,6 +143,18 @@ class Job
     public function setContractSector(?ContractSector $contractSector): self
     {
         $this->contractSector = $contractSector;
+
+        return $this;
+    }
+
+    public function getPdf(): ?string
+    {
+        return $this->pdf;
+    }
+
+    public function setPdf(?string $pdf): self
+    {
+        $this->pdf = $pdf;
 
         return $this;
     }

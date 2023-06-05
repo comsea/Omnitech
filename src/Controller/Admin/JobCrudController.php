@@ -31,6 +31,9 @@ class JobCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $publicDir = $this->getParameter('app.public_dir');
+        $basePath = $this->getParameter('app.base_path');
+
         return [
             IdField::new('id')
                 ->hideOnForm()
@@ -43,6 +46,20 @@ class JobCrudController extends AbstractCrudController
                 ->setLabel('Secteur du contrat'),
             TextEditorField::new('description')
                 ->setLabel('Description'),
+            ImageField::new('pdf')
+                ->setLabel('PDF à télécharger')
+                ->onlyWhenUpdating()
+                ->setRequired(false)
+                ->setBasePath($basePath)
+                ->setUploadDir($publicDir . '/' . $basePath)
+                ->setUploadedFileNamePattern('[contenthash].[extension]'),
+            ImageField::new('pdf')
+                ->setLabel('PDF à télécharger')
+                ->hideWhenUpdating()
+                ->setRequired(true)
+                ->setBasePath($basePath)
+                ->setUploadDir($publicDir . '/' . $basePath)
+                ->setUploadedFileNamePattern('[contenthash].[extension]'),
             BooleanField::new('is_published')
                 ->setLabel('Publication'),
             DateTimeField::new('created_at')

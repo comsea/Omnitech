@@ -21,7 +21,7 @@
 {% block body %}
     <div class="w-full flex flex-col justify-center items-center relative">
         {% if news != null and news.ispublished == 1 %}
-            <div class="w-5/6 mt-32 flex felex-row items-start justify-between">
+            <div class="w-5/6 mt-32 flex flex-row items-start justify-between">
                 <div class="w-[40%] grid grid-cols-2 gap-10">
                     <img src="{{ asset(base_path ~ '/' ~ news.image) }}" alt="Image présentation" class="w-full h-full object-cover col-span-2 border-8 border-[#294690]">
                     {% for images in news.gallery %}

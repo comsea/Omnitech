@@ -14,3 +14,67 @@
     </div>
 {% endblock %} 
 
+{% block body %}
+    <div class="w-full relative mt-20 mb-10 pb-16 flex flex-col items-center justify-center h-full">
+        <img src="{{ asset("build/images/bgb.png") }}" alt="Background" class="w-full h-full object-cover object-top absolute -z-20">
+        <div class="w-5/6 flex flex-col items-center justify-center">
+            <h2 class="font-bold text-5xl ombrage p-8">POUR TOUTES DEMANDES D'INFORMATIONS, CONTACTEZ-NOUS !</h2>
+            <div class="w-full grid grid-cols-2 gap-4 mt-8">
+                <div class="bg-[#D7D960] p-5 text-4xl space-y-4 flex flex-col justify-center">
+                    <p>Z.A. DEVANT NOUZON</p>
+                    <p>08700 NOUZONVILLE</p>
+                    <p>03 24 59 02 89</p>
+                    <p>contact@ardennes-cn.com</p>
+                </div>
+
+                <div class="bg-[#294690] p-5 space-y-8 row-span-2 text-white">
+                    <h3 class="text-4xl font-medium">FORMULAIRE DE CONTACT</h3>
+                    <div>
+                        {{ form_start(form, {
+                            'attr': {
+                                'class': 'space-y-4'
+                            }
+                        }) }}
+                        {{ form_row(form.name, {
+                            'attr': {
+                                'class': 'bg-[#294690] w-full flex flex-col p-1 border-2 border-white'
+                            }
+                        }) }}
+                        {{ form_row(form.email, {
+                            'attr': {
+                                'class': 'bg-[#294690] w-full flex flex-col p-1 border-2 border-white'
+                            }
+                        }) }}
+                        {{ form_row(form.subject, {
+                            'attr': {
+                                'class': 'bg-[#294690] w-full flex flex-col p-1 border-2 border-white'
+                            }
+                        }) }}
+                        {{ form_row(form.message, {
+                            'attr': {
+                                'class': 'bg-[#294690] w-full flex flex-col p-1 border-2 border-white'
+                            }
+                        }) }}
+                        <div class="flex flex-row">
+                            {{ form_row(form.validate) }}
+                            <p class="ml-2">En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de la demande de contact et de la relation commerciale qui peut en découler.*</p>
+                        </div>
+                        <div>
+                            <p class="text-base italic">Ce site est protégé par reCAPTCHA et la Politique de Confidentialité et les Conditions d'utilisation de Google.</p>
+                            {{ form_row(form.submit, {
+                                'attr': {
+                                    'class': 'bg-[#294690] flex flex-col px-3 py-1 border-2 border-white hover:text-[#D7D960] hover:border-[#D7D960]'
+                                }
+                            }) }}
+                            <p class="text-base italic">*Champs obligatoires</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1891.7280913338552!2d4.729537808082268!3d49.81813180755217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea0e9f1da94c2b%3A0x587266ffa80dcb60!2sArdennes%20CN!5e0!3m2!1sfr!2sfr!4v1685968548581!5m2!1sfr!2sfr" class="w-full h-full"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

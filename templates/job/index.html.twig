@@ -38,10 +38,14 @@
                         <p>PDF à télécharger : <a href="{{ asset(base_path ~ '/' ~ jobs.pdf) }}" download="{{ asset(base_path ~ '/' ~ jobs.pdf) }}" class="hover:underline">ici</a></p>
                     </div>
                 {% endif %}
+                <div class="w-5/6 mt-6 text-lg text-gray-500">
+                    <p>Créé le : {{ jobs.createdAt|format_datetime(locale='fr', pattern='dd MMMM YYYY') }}</p>
+                    <p>Dernière modification le : {{ jobs.updatedAt|format_datetime(locale='fr', pattern='dd MMMM YYYY') }}</p>
+                </div>
             </div>
-            <div class="w-5/6 mt-6 text-lg text-gray-500">
-                <p>Créé le : {{ jobs.createdAt|format_datetime(locale='fr', pattern='dd MMMM YYYY') }}</p>
-                <p>Dernière modification le : {{ jobs.updatedAt|format_datetime(locale='fr', pattern='dd MMMM YYYY') }}</p>
+            <div class="w-3/4 bg-[#294690] mt-10 text-white rounded-2xl p-6 flex flex-row justify-between items-center">
+                <p class="text-5xl font-medium ombrage">INTÉRESSÉ(E) ?</p>
+                <a href="{{ path('app_contact') }}" class="bg-[#D7D960] hover:bg-white text-[#294690] text-3xl rounded-2xl px-10 py-4" title="Contact">Nous contacter</a>
             </div>
         {% else %}
         <div class="mt-12">

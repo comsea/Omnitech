@@ -79,3 +79,7 @@
     margin: 0;
     padding: 10px 15px 0 15px;
   }
+
+.grecaptcha-badge {
+    visibility: hidden;
+  }

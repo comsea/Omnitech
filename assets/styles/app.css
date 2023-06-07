@@ -63,3 +63,19 @@
     border-width: 0 0 70px 68vw;
     border-color: transparent transparent white transparent;
 }
+
+.active {
+    position: absolute;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    z-index: 10;
+    top: 100%;
+    left: 0;
+    background-color: #294690;
+    width: 100% !important;
+    height: 280px;
+    margin: 0;
+    padding: 10px 15px 0 15px;
+  }

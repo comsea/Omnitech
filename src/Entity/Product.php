@@ -23,7 +23,7 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $file = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -37,6 +37,12 @@ class Product
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?ProductSupplier $supplier = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?ProductSubCategory $sub_category = null;
 
     public function getId(): ?int
     {
@@ -135,6 +141,30 @@ class Product
     public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getSupplier(): ?ProductSupplier
+    {
+        return $this->supplier;
+    }
+
+    public function setSupplier(?ProductSupplier $supplier): self
+    {
+        $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    public function getSubCategory(): ?ProductSubCategory
+    {
+        return $this->sub_category;
+    }
+
+    public function setSubCategory(?ProductSubCategory $sub_category): self
+    {
+        $this->sub_category = $sub_category;
 
         return $this;
     }

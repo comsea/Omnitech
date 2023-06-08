@@ -83,3 +83,7 @@
 .grecaptcha-badge {
     visibility: hidden;
   }
+
+.centrage {
+    transform: translate(0, 91px) !important;
+}

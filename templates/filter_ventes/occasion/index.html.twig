@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}OMNITECHNIQUE | Ventes direct{% endblock %}
+{% block title %}OMNITECHNIQUE | Ventes direct d'occasions{% endblock %}
 
 {% block header %}
     <div class="lg:h-[50vh] h-[40vh] w-full flex flex-col justify-center items-center relative">
@@ -9,7 +9,7 @@
         </video>
         <div class="w-full flex flex-col justify-center items-center space-y-10">
             <img src="{{ asset("build/images/logo.png") }}" alt="Logo Omnitechnique" class="lg:w-1/3 w-3/4">
-            <h1 class="text-white font-bold lg:text-7xl text-4xl text-center px-4">NOS VENTES DIRECT</h1>
+            <h1 class="text-white font-bold lg:text-7xl text-4xl text-center px-4">NOS VENTES DIRECT D'OCCASIONS</h1>
         </div>
     </div>
 {% endblock %} 
@@ -37,33 +37,27 @@
                 <a href="{{ path('app_neuf') }}" class="w-1/2 flex justify-center border-b-8 border-[#DFDFDF] text-[#DFDFDF] py-4 cursor-pointer hover:border-[#294690] hover:text-[#294690]">
                     <p>MACHINES NEUVES</p>
                 </a>
-                <a href="{{ path('app_occasion') }}" class="w-1/2 flex justify-center border-b-8 border-[#DFDFDF] text-[#DFDFDF] py-4 cursor-pointer hover:border-[#D7D960] hover:text-[#D7D960]">
+                <a href="{{ path('app_occasion') }}" class="w-1/2 flex justify-center border-b-8 border-[#D7D960] text-[#D7D960] py-4 cursor-pointer">
                     <p>MACHINES D'OCCASIONS</p>
                 </a>
             </div>
             {% if app.request.get('id_cat') is empty %}
                 <div class="grid lg:grid-cols-3 grid-cols-1 gap-8">
-                    {% for vente in ventes|reverse %}
+                    {% for occasion in occasions|reverse %}
                         <div class="flex flex-col h-full w-full">
-                            {% if vente.quality == 1 %}
-                                <div class="w-full border-[12px] border-[#294690]">
-                                    <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
-                                </div>
-                            {% else %}
-                                <div class="w-full border-[12px] border-[#D7D960]">
-                                    <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
-                                </div>
-                            {% endif %}
+                            <div class="w-full border-[12px] border-[#D7D960]">
+                                <img src="{{ asset(base_path ~ '/' ~ occasion.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
+                            </div>
                             <div class="w-full bg-[#EFEFEF] lg:py-6 py-4 lg:px-4 px-2 flex flex-col space-y-4">
                                 <div class="flex flex-row justify-between items-center font-medium">
-                                    <h3 class="lg:text-3xl text-2xl">{{ vente.title }}</h3>
-                                    <p>{{ vente.price }} €</p>
+                                    <h3 class="lg:text-3xl text-2xl">{{ occasion.title }}</h3>
+                                    <p>{{ occasion.price }} €</p>
                                 </div>
                                 <div class="line-clamp-3">
-                                    {{ vente.description|raw }}
+                                    {{ occasion.description|raw }}
                                 </div>
                                 <div class="w-full flex justify-center">
-                                    <a href="{{ path('app_vente', {'id': vente.id}) }}" class="flex items-center justify-center bg-[#D7D960] rounded-lg px-3 py-1">EN SAVOIR PLUS</a>
+                                    <a href="{{ path('app_vente', {'id': occasion.id}) }}" class="flex items-center justify-center bg-[#D7D960] rounded-lg px-3 py-1">EN SAVOIR PLUS</a>
                                 </div>
                             </div>
                         </div>
@@ -71,28 +65,22 @@
                 </div>
             {% else %}
                 <div class="grid lg:grid-cols-3 grid-cols-1 gap-8">
-                    {% for vente in ventes|reverse %}
-                        {% if app.request.get("id_cat") == vente.articleCategory.id %}
+                    {% for occasion in occasions|reverse %}
+                        {% if app.request.get("id_cat") == occasion.articleCategory.id %}
                             <div class="flex flex-col h-full w-full">
-                                {% if vente.quality == 1 %}
-                                    <div class="w-full border-[12px] border-[#294690]">
-                                        <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
-                                    </div>
-                                {% else %}
-                                    <div class="w-full border-[12px] border-[#D7D960]">
-                                        <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
-                                    </div>
-                                {% endif %}
+                                <div class="w-full border-[12px] border-[#D7D960]">
+                                    <img src="{{ asset(base_path ~ '/' ~ occasion.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
+                                </div>
                                 <div class="w-full bg-[#EFEFEF] lg:py-6 py-4 lg:px-4 px-2 flex flex-col space-y-4">
                                     <div class="flex flex-row justify-between items-center font-medium">
-                                        <h3 class="lg:text-3xl text-2xl">{{ vente.title }}</h3>
-                                        <p>{{ vente.price }} €</p>
+                                        <h3 class="lg:text-3xl text-2xl">{{ occasion.title }}</h3>
+                                        <p>{{ occasion.price }} €</p>
                                     </div>
                                     <div class="line-clamp-3">
-                                        {{ vente.description|raw }}
+                                        {{ occasion.description|raw }}
                                     </div>
                                     <div class="w-full flex justify-center">
-                                        <a href="{{ path('app_vente', {'id': vente.id}) }}" class="flex items-center justify-center bg-[#D7D960] rounded-lg px-3 py-1">EN SAVOIR PLUS</a>
+                                        <a href="{{ path('app_vente', {'id': occasion.id}) }}" class="flex items-center justify-center bg-[#D7D960] rounded-lg px-3 py-1">EN SAVOIR PLUS</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +90,7 @@
             {% endif %} 
             <div class="w-full flex justify-center my-8">
                 <div class="navigation flex justify-content">
-                    {{ knp_pagination_render(ventes) }}
+                    {{ knp_pagination_render(occasions) }}
                 </div>
             </div>
         </div>

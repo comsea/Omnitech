@@ -10,6 +10,7 @@
     transform:skew(0, 10deg);
 }
 
+@media screen and (min-width: 1024px) { 
 .extension::before {
     content: "";
     height: 100%;
@@ -56,6 +57,7 @@
     border-right: 8px solid #D7D960;
     margin-top: 2rem;
     margin-left: -2rem;
+}
 }
 
 .triangle {

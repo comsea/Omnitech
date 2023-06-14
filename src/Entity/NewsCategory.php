@@ -76,7 +76,7 @@ class NewsCategory
         return $this;
     }
 
-    public function removeEtre(News $newsCategory): self
+    public function removeNewsCategory(News $newsCategory): self
     {
         if ($this->newsCategory->removeElement($newsCategory)) {
             // set the owning side to null (unless already changed)

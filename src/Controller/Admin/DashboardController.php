@@ -9,6 +9,10 @@ use App\Entity\Image;
 use App\Entity\Job;
 use App\Entity\News;
 use App\Entity\NewsCategory;
+use App\Entity\Product;
+use App\Entity\ProductCategory;
+use App\Entity\ProductSubCategory;
+use App\Entity\ProductSupplier;
 use App\Entity\Supplier;
 use App\Entity\User;
 use App\Entity\WorkShop;
@@ -50,6 +54,12 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Emplois', 'fas fa-briefcase', Job::class),
                 MenuItem::linkToCrud('Types des contrats', 'fa-solid fa-file-contract', ContractType::class),
                 MenuItem::linkToCrud('Secteurs des contrats', 'fa-solid fa-file-contract', ContractSector::class),
+            ]),
+            MenuItem::subMenu('Produits', 'fas fa-industry')->setSubItems([
+                MenuItem::linkToCrud('Produits', 'fas fa-industry', Product::class),
+                MenuItem::linkToCrud('Catégories des produits', 'fa fa-tags', ProductCategory::class),
+                MenuItem::linkToCrud('Sous catégories des produits', 'fa fa-tags', ProductSubCategory::class),
+                MenuItem::linkToCrud('Marques des produits', 'fa fa-industry', ProductSupplier::class),
             ]),
             MenuItem::linkToCrud('Galerie d\'images', 'fa fa-picture-o', Image::class),
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),

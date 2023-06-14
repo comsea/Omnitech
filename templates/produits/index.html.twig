@@ -15,61 +15,132 @@
 {% endblock %} 
 
 {% block body %}
-    <div class="relative w-5/6 mt-20 mb-52">
-        <div class="bg-[#294690] w-full flex flex-row justify-around items-center text-4xl py-4">
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white hover:text-[#D7D960] px-4 py-2.5 text-center inline-flex items-center" type="button">CENTRE D'USINAGE</button>
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown1" class="text-white hover:text-[#D7D960] px-4 py-2.5 text-center inline-flex items-center" type="button">TOURNAGE</button>
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown2" class="text-white hover:text-[#D7D960] px-4 py-2.5 text-center inline-flex items-center" type="button">ÉLECTROÉROSION</button>    
+    <div class="relative w-5/6 mt-20">
+        <div class="bg-[#294690] w-full flex lg:flex-row flex-col justify-around items-center lg:text-4xl text-2xl lg:p-4 p-2">
+            {% for productcategory in productcategorys %}
+                <form action="" method="get">
+                    <input type="hidden" name="id_cat" value="{{ productcategory.id }}">
+                    <input type="submit" value="{{ productcategory.name }}" class="text-white hover:text-[#D7D960] px-4 py-2.5 text-center items-center uppercase cursor-pointer">
+                </form>
+            {% endfor %}
         </div>
-        <!-- Dropdown menu -->
-        <div id="dropdown" class="z-10 hidden bg-[#D5DDEF] w-full centrage">
-            <ul class="py-2 text-lg text-[#294690]  " aria-labelledby="dropdownDefaultButton">
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Settings</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Earnings</a>
-                </li>
-            </ul>
-        </div>
-
-        <div id="dropdown1" class="z-10 hidden bg-[#D5DDEF] w-full centrage">
-            <ul class="py-2 text-lg text-[#294690]" aria-labelledby="dropdownDefaultButton">
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Test</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Settings</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Earnings</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Sign out</a>
-                </li>
-            </ul>
-        </div>
-
-        <div id="dropdown2" class="z-10 hidden bg-[#D5DDEF] w-full centrage">
-            <ul class="py-2 text-lg text-[#294690]" aria-labelledby="dropdownDefaultButton">
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Test</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Settings</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Earnings</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-0.5">Sign out</a>
-                </li>
-            </ul>
-        </div>
+        {% if app.request.get('id_cat') is empty %}
+        {% else %}
+            <div class="w-full bg-[#D5DDEF] p-4 text-[#294690] text-lg space-y-1">
+                <form action="" method="get" class="flex flex-col w-full">
+                    <input type="hidden" name="id_cat" value="{{ app.request.get('id_cat') }}">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col w-2/5">
+                            {% for productsubcategory in productsubcategorys %}
+                                {% if app.request.get('id_cat') == productsubcategory.category.id %}
+                                    <div class="flex flex-row items-center space-x-3">
+                                        <input type="radio" name="id_scat" id="{{ productsubcategory.name }}" value="{{ productsubcategory.id }}">
+                                        <label for="{{ productsubcategory.name }}">{{ productsubcategory.name }}</label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="flex flex-col w-2/5">
+                            <p class='underline'>Marque :</p>
+                            {% for supplier in suppliers %}
+                                    <div class="flex flex-row items-center space-x-3">
+                                        <input type="radio" name="id_mar" id="{{ supplier.name }}" value="{{ supplier.id }}">
+                                        <label for="{{ supplier.name }}">{{ supplier.name }}</label>
+                                    </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <input type="submit" value="Rechercher" class="bg-[#294690] text-white px-3 py-1">
+                    </div>
+                </form>
+            </div>
+        {% endif %}
     </div>
+
+    {% if app.request.get('id_cat') is empty %}
+        <div class="mt-20 w-5/6 grid lg:grid-cols-4 grid-cols-1 lg:gap-10 gap-6">
+            {% for product in products %}
+                <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                    <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                    <div class="w-full flex justify-center">
+                        <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                    </div>
+                    <div class="w-full flex justify-center">
+                        <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                    </div>
+                    <div class="w-full h-1 bg-[#D7D960]"></div>
+                    <div class="pb-4">
+                        <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="mt-20 w-5/6 grid lg:grid-cols-4 grid-cols-1 lg:gap-10 gap-6">
+            {% for product in products %}
+                {% if app.request.get('id_cat') == product.category.id %}
+                    {% if app.request.get('id_scat') is empty and app.request.get('id_mar') is empty %}
+                        <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                            <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                            <div class="w-full flex justify-center">
+                                <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                            </div>
+                            <div class="w-full flex justify-center">
+                                <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                            </div>
+                            <div class="w-full h-1 bg-[#D7D960]"></div>
+                            <div class="pb-4">
+                                <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
+                            </div>
+                        </div>
+                    {% elseif app.request.get('id_scat') == product.subcategory.id and app.request.get('id_mar') is empty %}
+                        <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                            <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                            <div class="w-full flex justify-center">
+                                <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                            </div>
+                            <div class="w-full flex justify-center">
+                                <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                            </div>
+                            <div class="w-full h-1 bg-[#D7D960]"></div>
+                            <div class="pb-4">
+                                <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
+                            </div>
+                        </div>
+                    {% elseif app.request.get('id_scat') is empty and app.request.get('id_mar') == product.supplier.id %}
+                        <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                            <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                            <div class="w-full flex justify-center">
+                                <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                            </div>
+                            <div class="w-full flex justify-center">
+                                <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                            </div>
+                            <div class="w-full h-1 bg-[#D7D960]"></div>
+                            <div class="pb-4">
+                                <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
+                            </div>
+                        </div>
+                    {% elseif app.request.get('id_scat') == product.subcategory.id and app.request.get('id_mar') == product.supplier.id %}
+                        <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                            <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                            <div class="w-full flex justify-center">
+                                <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                            </div>
+                            <div class="w-full flex justify-center">
+                                <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                            </div>
+                            <div class="w-full h-1 bg-[#D7D960]"></div>
+                            <div class="pb-4">
+                                <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
 
 
     <div class="w-5/6 flex flex-col justify-center items-center mt-10 lg:text-4xl text-2xl space-y-2">

@@ -108,11 +108,11 @@
                         <div class="flex flex-col w-11/12">
                             {% if vente.quality == 1 %}
                                 <div class="w-full border-[12px] border-[#294690]">
-                                    <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-full object-cover">
+                                    <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
                                 </div>
                             {% else %}
                                 <div class="w-full border-[12px] border-[#D7D960]">
-                                    <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-full object-cover">
+                                    <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
                                 </div>
                             {% endif %}
                             <div class="w-full bg-[#EFEFEF] lg:py-6 py-4 lg:px-4 px-2 flex flex-col space-y-4">

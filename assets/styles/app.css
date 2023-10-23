@@ -1,3 +1,91 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ombrage {
+    text-shadow: gray 2px 2px 5px;
+}
+
+.formes {
+    transform:skew(0, 10deg);
+}
+
+@media screen and (min-width: 1024px) { 
+.extension::before {
+    content: "";
+    height: 100%;
+    width: 50%;
+    background-color: #294690;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    z-index: -10;
+}
+.extension::after {
+    content: "";
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    z-index: -10;
+    border-bottom: 8px solid #D7D960;
+    border-left: 8px solid #D7D960;
+    margin-top: 2rem;
+    margin-right: -2rem;
+}
+
+.test::before {
+    content: "";
+    height: 100%;
+    width: 50%;
+    background-color: #294690;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: -10;
+}
+.test::after {
+    content: "";
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: -10;
+    border-bottom: 8px solid #D7D960;
+    border-right: 8px solid #D7D960;
+    margin-top: 2rem;
+    margin-left: -2rem;
+}
+}
+
+.triangle {
+    border-style: solid;
+    border-width: 0 0 70px 68vw;
+    border-color: transparent transparent white transparent;
+}
+
+.active {
+    position: absolute;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    z-index: 10;
+    top: 100%;
+    left: 0;
+    background-color: #294690;
+    width: 100% !important;
+    height: 280px;
+    margin: 0;
+    padding: 10px 15px 0 15px;
+  }
+
+.grecaptcha-badge {
+    visibility: hidden;
+  }
+
+.centrage {
+    transform: translate(0, 91px) !important;
+}

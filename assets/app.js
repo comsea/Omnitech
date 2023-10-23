@@ -8,5 +8,45 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
-// start the Stimulus application
-import './bootstrap';
+// enable the interactive UI components from Flowbite
+import 'flowbite';
+
+// Slider page recrutement
+$(document).ready(function(){
+    $('.recrutement').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        dots: true,
+        arrows: true,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: true,
+              arrows: false
+            }
+    }]
+      });
+  });
+
+// Navbar
+const toggleButton = document.getElementById('toggle-button');
+const navList = document.getElementById('nav');
+
+const hide = () => {
+  navList.classList.remove('active');
+}
+
+toggleButton.addEventListener('click', event => {
+  event.stopPropagation()
+  navList.classList.toggle('active');
+})
+
+const handleClosure = event => !navList.contains(event.target) && hide()
+
+window.addEventListener('click', handleClosure)
+window.addEventListener('focusin', handleClosure)

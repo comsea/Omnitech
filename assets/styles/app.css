@@ -89,3 +89,17 @@
 .centrage {
     transform: translate(0, 91px) !important;
 }
+
+.termsfeed-com---palette-light {
+    max-width: 100%!important;
+    width: 100%!important;
+  }
+  
+  .termsfeed-com---palette-light .cc-nb-okagree {
+    background-color: #294690!important;
+  }
+  
+  .termsfeed-com---palette-light .cc-nb-reject {
+    background-color: #294690!important;
+  }
+  

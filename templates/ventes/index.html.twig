@@ -54,10 +54,14 @@
                                     <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
                                 </div>
                             {% endif %}
-                            <div class="w-full bg-[#EFEFEF] lg:py-6 py-4 lg:px-4 px-2 flex flex-col space-y-4">
-                                <div class="flex flex-row justify-between items-center font-medium">
-                                    <h3 class="lg:text-3xl text-2xl">{{ vente.title }}</h3>
-                                    <p>{{ vente.price }} €</p>
+                            <div class="w-full bg-[#EFEFEF] lg:py-6 py-4 lg:px-4 px-2 flex flex-col space-y-4 h-full">
+                                <div class="flex flex-row justify-between items-center font-medium w-full">
+                                    <div class="w-[55%]">
+                                        <h3 class="lg:text-3xl text-2xl">{{ vente.title }}</h3>
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <p>{{ vente.price }} €</p>
+                                    </div>
                                 </div>
                                 <div class="line-clamp-3">
                                     {{ vente.description|raw }}
@@ -83,10 +87,10 @@
                                         <img src="{{ asset(base_path ~ '/' ~ vente.image) }}" alt="Image présentation" class="w-full h-48 object-cover">
                                     </div>
                                 {% endif %}
-                                <div class="w-full bg-[#EFEFEF] lg:py-6 py-4 lg:px-4 px-2 flex flex-col space-y-4">
-                                    <div class="flex flex-row justify-between items-center font-medium">
-                                        <h3 class="lg:text-3xl text-2xl">{{ vente.title }}</h3>
-                                        <p>{{ vente.price }} €</p>
+                                <div class="w-full bg-[#EFEFEF] lg:py-6 py-4 lg:px-4 px-2 flex flex-col space-y-4 h-full">
+                                    <div class="flex flex-row justify-between items-center font-medium w-full">
+                                        <h3 class="lg:text-3xl text-2xl w-[55%]">{{ vente.title }}</h3>
+                                        <p class="w-[45%]">{{ vente.price }} €</p>
                                     </div>
                                     <div class="line-clamp-3">
                                         {{ vente.description|raw }}

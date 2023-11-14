@@ -35,10 +35,10 @@
             <img src="{{ asset("build/images/bg-services.png") }}" alt="Background services" class="w-full h-full object-cover">
         </div>
         <div class="w-5/6 grid lg:grid-cols-3 grid-cols-1 lg:gap-10 gap-6">
-            <div class="bg-[#D7D960] p-5 row-span-2 -z-30 flex flex-col items-start lg:space-y-10 space-y-6 min-h-[30rem]">
+            <div class="bg-[#D7D960] p-5 row-span-2 flex flex-col items-start lg:space-y-10 space-y-6 min-h-[30rem]">
                 <div class="font-bold lg:text-4xl text-3xl relative flex justify-center items-center mt-5 ml-5">
-                    <h2 class="ombrage">NOS PRODUITS</h2>
-                    <div class="absolute -z-10 lg:-left-5 -left-2 bg-white lg:w-12 w-8 lg:h-16 h-12 shadow-xl formes"></div>
+                    <a href="{{ path('app_produits') }}" title="Produits" class="ombrage z-10">NOS PRODUITS</a>
+                    <div class="absolute lg:-left-5 -left-2 bg-white lg:w-12 w-8 lg:h-16 h-12 shadow-xl formes"></div>
                 </div>
                 <p>Découvrez nos gammes de produits pour le centre d'usinage, le tournage, ainsi que pour l'électroérosion.<br>
                 Différents modèles sont disponnibles, et pour plus d'informations contatez-nous.</p>
@@ -54,10 +54,10 @@
             <div class="max-h-60">
                 <img src="{{ asset("build/images/grid2.png") }}" alt="Image présentation" class="w-full h-full object-cover">
             </div>
-            <div class="bg-white p-5 row-span-2 -z-30 flex flex-col items-start lg:space-y-10 space-y-6 min-h-[30rem]">
+            <div class="bg-white p-5 row-span-2 flex flex-col items-start lg:space-y-10 space-y-6 min-h-[30rem]">
                 <div class="font-bold lg:text-4xl text-3xl relative flex justify-center items-center mt-5 ml-5">
-                    <h2 class="ombrage">NOS SERVICES</h2>
-                    <div class="absolute -z-10 lg:-left-5 -left-2 bg-[#D7D960] lg:w-12 w-8 lg:h-16 h-12 shadow-xl formes"></div>
+                    <a href="{{ path('app_services') }}" title="Produits" class="ombrage z-40">NOS SERVICES</a>
+                    <div class="absolute lg:-left-5 z-10 -left-2 bg-[#D7D960] lg:w-12 w-8 lg:h-16 h-12 shadow-xl formes"></div>
                 </div>
                 <p>Nous mettons à votre disposition ses compétences en maintenance curative et préventive, sur notre site. Nous intervenons dans différents domaines industriels sur des machines-outils toutes marques équipées de commande numérique.</p>
                 <ul class="text-[#294690] lg:text-2xl text-xl font-semibold list-disc list-inside">
@@ -74,8 +74,8 @@
             </div>
         </div>
     </div>
-
-    <div class="w-5/6 flex lg:flex-row flex-col-reverse items-center justify-between lg:space-x-6 lg:mt-44 mt-32">
+ 
+    <div class="w-5/6 flex lg:flex-row flex-col-reverse items-center justify-between lg:space-x-6 lg:mt-44 mt-32 mb-24 lg:mb-24">
         <div class="lg:w-1/2 w-full flex flex-col items-center justify-center h-full relative mt-10">
             <img src="{{ asset("build/images/ardennescn.png") }}" alt="Image présentation" class="lg:w-3/4 w-5/6 skew-y-6">
             <div class="absolute lg:w-3/4 w-5/6 h-full border-8 border-[#D7D960] skew-y-6 mt-16 ml-16 -z-10"></div>
@@ -137,45 +137,43 @@
         </div>
     </div> #}
 
-    <div class="w-full flex flex-col items-center lg:mt-44 mt-24 h-full relative">
-        <div class="absolute w-full h-3/4 bg-[#294690] -z-20 bottom-0 skew-y-3">
-            <img src="{{ asset("build/images/bg.png") }}" alt="Background" class="w-full h-full object-cover object-top">
-        </div>
-        <div class="lg:w-2/3 w-5/6 flex flex-col items-center space-y-20">
+    <div class="w-full flex flex-col items-center h-full relative py-5">
+        <img src="{{ asset("build/images/bg.png") }}" alt="Background" class="absolute w-full h-3/4 object-cover object-top bg-[#294690] -z-20 bottom-0 skew-y-3">
+        <div class="lg:w-2/3 w-5/6 flex flex-col items-center mb-16">
             <div class="font-bold lg:text-5xl text-3xl relative flex justify-center items-center">
                 <h2 class="ombrage">NOS ACTUALITÉS</h2>
                 <div class="absolute -z-10 lg:-left-5 -left-2 bg-[#D7D960] lg:w-16 w-10 lg:h-20 h-12 shadow-xl formes"></div>
             </div>
-            <div class="grid grid-cols-1 w-full lg:gap-10 gap-12">
-                {% for new in news|slice(-3)|reverse %}
-                    {% if new.ispublished == 1 %}
-                        <div class="w-full flex flex-row items-end justify-center max-h-[290px]">
-                            <div class="w-1/4 h-full skew-y-6">
-                                <img src="{{ asset(base_path ~ '/' ~ new.image) }}" alt="Image présentation" class="w-full h-full object-cover">
-                            </div>
-                            <div class="w-3/4 h-full lg:px-4 lg:py-6 px-2 py-3 flex flex-col items-start space-y-2 bg-[#EFECEF] relative">
-                                <h3 class="uppercase text-[#294690] font-bold lg:text-2xl text-xl">{{ new.title }}</h3>
-                                <h2 class="text-[#D7D960] font-semibold">{{ new.subtitle }}</h2>
-                                <div class="line-clamp-3 lg:block hidden">{{ new.description|raw }}</div>
-                                <p class="text-lg text-gray-500 capitalize">{{ new.newsCategory.name }} | {{ new.updatedat|format_datetime(locale='fr', pattern='dd MMMM YYYY') }}</p>
-                                <div class="absolute right-0 lg:bottom-0 -bottom-5">
-                                    <a href="{{ path('app_actualite', {'id': new.id}) }}" class="bg-[#D7D960] rounded-full py-2 px-8 -mr-4">En savoir plus</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <div class="text-[#294690] lg:text-3xl text-2xl">
-                <a href="{{ path('app_actualites') }}" class="lg:py-3 lg:px-8 py-2 px-6 bg-white rounded-full">En voir plus</a>
-            </div>
         </div>
-        <div class="w-5/6 flex flex-col justify-center items-center lg:text-4xl text-2xl font-bold lg:space-y-2 space-y-6 lg:pt-28 pt-12 pb-12 text-white">
+        <div class="lg:w-2/3 w-5/6 grid grid-cols-1 gap-y-10">
+            {% for new in news|slice(-3)|reverse %}
+                <div class="w-full flex flex-row items-end justify-center max-h-[290px]">
+                    <div class="w-1/4 h-full skew-y-6">
+                        <img src="{{ asset(base_path ~ '/' ~ new.image) }}" alt="Image présentation" class="w-full max-h-[290px] object-cover">
+                    </div>
+                    <div class="w-3/4 h-full lg:px-4 lg:py-6 px-2 py-3 flex flex-col items-start space-y-2 bg-[#EFECEF] relative">
+                        <h3 class="uppercase text-[#294690] font-bold lg:text-2xl text-xl">{{ new.title }}</h3>
+                        <h2 class="text-[#D7D960] font-semibold">{{ new.subtitle }}</h2>
+                        <div class="line-clamp-3 lg:block hidden">
+                            {{ new.description|raw }}
+                        </div>
+                        <p class="text-lg text-gray-500 capitalize">{{ new.newsCategory.name }} | {{ new.updatedat|format_datetime(locale='fr', pattern='dd MMMM YYYY') }}</p>
+                        <div class="absolute right-0 lg:bottom-0 -bottom-5">
+                            <a href="{{ path('app_actualite', {'id': new.id}) }}" class="bg-[#D7D960] rounded-full py-2 px-8 -mr-4">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="text-[#294690] lg:text-3xl text-2xl mt-16">
+            <a href="{{ path('app_actualites') }}" class="lg:py-3 lg:px-8 py-2 px-6 bg-white rounded-full">En voir plus</a>
+        </div>
+        <div class="w-5/6 flex flex-col justify-center items-center lg:text-4xl text-2xl text-center font-bold lg:space-y-2 space-y-6 lg:pt-28 pt-12 pb-12 text-white">
             <p>POUR TOUTES DEMANDES D'INFORMATION,</p>
             <p>CONTACTEZ-NOUS !</p>
         </div>
     </div>
-    <div class="w-5/6 flex flex-col justify-center items-center mt-10 lg:text-4xl text-2xl space-y-2">
+    <div class="w-5/6 flex flex-col justify-center items-center mt-10 lg:text-4xl text-2xl text-center space-y-2">
         <p>Z.A. DEVANT NOUZON - 08700 NOUZONVILLE</p>
         <p>03 24 59 02 89 | contact@ardennes-cn.com</p>
     </div>

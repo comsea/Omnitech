@@ -26,10 +26,10 @@ class ContactType extends AbstractType
                 'label' => 'Adresse mail*'
             ])
             ->add('subject', TextType::class, [
-                'label' => 'Sujet*'
+                'label' => 'Sujet'
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Message*'
+                'label' => 'Message'
             ])
             ->add('validate', CheckboxType::class, [
                 'label' => false,

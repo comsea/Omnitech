@@ -15,7 +15,28 @@
 {% endblock %} 
 
 {% block body %}
-    <div class="w-5/6 flex lg:flex-row flex-col-reverse items-center justify-between lg:space-x-6 lg:mt-44 mt-20">
+    <div class="w-full pt-20">
+        <marquee direction="left" loop class="w-full">
+            <div class="flex flex-row justify-between items-center w-[full] my-8 mx-auto space-x-5">
+                <a href="https://www.emco.fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Emco.webp") }}" alt="Emco" class="w-full" /></a>
+                <a href="https://huron.fr/fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Huron.jpg") }}" alt="Huron" class="w-full" /></a>
+                <a href="https://www.hwacheon-europe.com/en" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Hwacheon.png") }}" alt="Hwacheon" class="w-full" /></a>
+                <a href="http://www.johnford.com.tw/index.html" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/JohnFord.png") }}" alt="John Ford" class="w-full" /></a>
+                <a href="https://www.geminislathes.fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Geminis.jpeg") }}" alt="Geminis" class="w-full" /></a>
+                <a href="https://www.mtemachine.com/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/MTE.webp") }}" alt="MTE" class="w-full" /></a>
+                <a href="https://www.matec.de/en/Company/Company" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Matec.png") }}" alt="Matec" class="w-full" /></a>
+                <a href="https://www.litzhitech.com/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Litz.png") }}" alt="Litz" class="w-full" /></a>
+                <a href="http://www.challengermachinetools.com/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Challenger.png") }}" alt="Challenger" class="w-full" /></a>
+                <a href="https://www.mcmspa.it/?lSite=fr" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/MCM.jpg") }}" alt="MCM" class="w-full" /></a>
+                <a href="https://www.bodor.com/fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Bodor.png") }}" alt="Bodor" class="w-full" /></a>
+                <a href="https://www.cms-industrie.fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/CMS.png") }}" alt="CMS" class="w-full" /></a>
+                <a href="https://www.fanuc.eu/fr/fr" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Fanuc.jpg") }}" alt="Fanuc" class="w-full" /></a>
+                <a href="https://hexagon.com/fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Hexagon.png") }}" alt="Hexagon" class="w-full" /></a>
+                <a href="https://www.kencnc.com/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Ken.png") }}" alt="Ken" class="w-full" /></a>
+            </div>
+        </marquee>
+    </div>
+    <div class="w-5/6 flex lg:flex-row flex-col-reverse items-center justify-between lg:space-x-6 lg:mt-20 mt-20">
         <div class="lg:w-1/2 w-full flex flex-col items-center justify-center h-full relative lg:mt-0 mt-8">
             <img src="{{ asset("build/images/pres1.png") }}" alt="Image présentation" class="lg:w-1/2 w-5/6 -skew-x-6">
             <div class="absolute lg:w-1/2 w-5/6 h-full border-8 border-[#D7D960] -skew-x-6 mt-16 mr-16 -z-10"></div>
@@ -53,6 +74,7 @@
                 <li>Électro-érosion, découpe jet d'eau</li>
                 <li>Découpe laser</li>
                 <li>Machine de contrôle tridimensionnelle</li>
+                <li>Scanner</li>
             </ul>
         </div>
 

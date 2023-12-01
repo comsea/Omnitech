@@ -15,8 +15,11 @@
 {% endblock %} 
 
 {% block body %}
-    <div class="relative w-5/6 mt-20">
-        <div class="bg-[#294690] w-full flex lg:flex-row flex-col justify-around items-center lg:text-4xl text-2xl lg:p-4 p-2">
+    <div class="relative w-5/6 mt-20 flex flex-col justify-center items-center">
+        <div class="mb-12">
+            <p>Distributeur de machines-outils depuis 1981, Omnitechnique vous propose des modèles neufs ou d’occasion, ainsi qu’une gamme complète de fournitures pour vos équipements.</p>
+        </div>
+        <div class="bg-[#294690] w-[95%] flex lg:flex-row flex-col justify-around items-center lg:text-4xl text-2xl lg:p-4 p-2">
             {% for productcategory in productcategorys %}
                 <form action="" method="get">
                     <input type="hidden" name="id_cat" value="{{ productcategory.id }}">
@@ -26,7 +29,7 @@
         </div>
         {% if app.request.get('id_cat') is empty %}
         {% else %}
-            <div class="w-full bg-[#D5DDEF] p-4 text-[#294690] text-lg space-y-1">
+            <div class="w-[95%] bg-[#D5DDEF] p-4 text-[#294690] text-lg space-y-1">
                 <form action="" method="get" class="flex flex-col w-full">
                     <input type="hidden" name="id_cat" value="{{ app.request.get('id_cat') }}">
                     <div class="flex flex-row justify-between">
@@ -69,10 +72,6 @@
                     <div class="w-full flex justify-center">
                         <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
                     </div>
-                    <div class="w-full h-1 bg-[#D7D960]"></div>
-                    <div class="pb-4">
-                        <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
-                    </div>
                 </div>
             {% endfor %}
         </div>
@@ -89,10 +88,6 @@
                             <div class="w-full flex justify-center">
                                 <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
                             </div>
-                            <div class="w-full h-1 bg-[#D7D960]"></div>
-                            <div class="pb-4">
-                                <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
-                            </div>
                         </div>
                     {% elseif app.request.get('id_scat') == product.subcategory.id and app.request.get('id_mar') is empty %}
                         <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
@@ -102,10 +97,6 @@
                             </div>
                             <div class="w-full flex justify-center">
                                 <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
-                            </div>
-                            <div class="w-full h-1 bg-[#D7D960]"></div>
-                            <div class="pb-4">
-                                <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
                             </div>
                         </div>
                     {% elseif app.request.get('id_scat') is empty and app.request.get('id_mar') == product.supplier.id %}
@@ -117,10 +108,6 @@
                             <div class="w-full flex justify-center">
                                 <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
                             </div>
-                            <div class="w-full h-1 bg-[#D7D960]"></div>
-                            <div class="pb-4">
-                                <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
-                            </div>
                         </div>
                     {% elseif app.request.get('id_scat') == product.subcategory.id and app.request.get('id_mar') == product.supplier.id %}
                         <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
@@ -130,10 +117,6 @@
                             </div>
                             <div class="w-full flex justify-center">
                                 <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
-                            </div>
-                            <div class="w-full h-1 bg-[#D7D960]"></div>
-                            <div class="pb-4">
-                                <a href="{{ path('app_produit', {'id': product.id}) }}" class="flex items-center justify-center text-[#294690]"><span class="rounded-full border-2 border-[#294690] px-2 mr-2">></span> en savoir plus</a>
                             </div>
                         </div>
                     {% endif %}

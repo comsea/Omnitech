@@ -4,9 +4,8 @@ module.exports = {
     "./assets/**/*.js",
     "./templates/**/*.html.twig"
   ],
-  theme: {
-    extend: {},
+  daisyui: {
+    themes: ["light"],
   },
-  plugins: [],
 }
 

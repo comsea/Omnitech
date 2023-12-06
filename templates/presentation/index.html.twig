@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OMNITECHNIQUE | Présentation{% endblock %}
+
+{% block header %}
+    <div class="lg:h-[50vh] h-[40vh] w-full flex flex-col justify-center items-center relative">
+        <video autoplay muted loop class="h-full w-full object-cover absolute -z-10">
+            <source src="{{ asset("build/videos/bg.mp4") }}" type="video/mp4" class="h-full w-full">
+        </video>
+        <div class="w-full flex flex-col justify-center items-center space-y-10">
+            <img src="{{ asset("build/images/logo.png") }}" alt="Logo Omnitechnique" class="lg:w-1/3 w-3/4">
+            <h1 class="text-white font-bold lg:text-7xl text-4xl text-center px-4">NOTRE HISTOIRE</h1>
+        </div>
+    </div>
+{% endblock %} 
+
+{% block body %}
+    <div class="w-full pt-20">
+        <marquee direction="left" loop class="w-full">
+            <div class="flex flex-row justify-between items-center w-[full] my-8 mx-auto space-x-5">
+                <a href="https://www.emco.fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Emco.webp") }}" alt="Emco" class="w-full" /></a>
+                <a href="https://huron.fr/fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Huron.jpg") }}" alt="Huron" class="w-full" /></a>
+                <a href="https://www.hwacheon-europe.com/en" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Hwacheon.png") }}" alt="Hwacheon" class="w-full" /></a>
+                <a href="http://www.johnford.com.tw/index.html" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/JohnFord.png") }}" alt="John Ford" class="w-full" /></a>
+                <a href="https://www.geminislathes.fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Geminis.jpeg") }}" alt="Geminis" class="w-full" /></a>
+                <a href="https://www.mtemachine.com/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/MTE.webp") }}" alt="MTE" class="w-full" /></a>
+                <a href="https://www.matec.de/en/Company/Company" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Matec.png") }}" alt="Matec" class="w-full" /></a>
+                <a href="https://www.litzhitech.com/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Litz.png") }}" alt="Litz" class="w-full" /></a>
+                <a href="http://www.challengermachinetools.com/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Challenger.png") }}" alt="Challenger" class="w-full" /></a>
+                <a href="https://www.mcmspa.it/?lSite=fr" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/MCM.jpg") }}" alt="MCM" class="w-full" /></a>
+                <a href="https://www.bodor.com/fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Bodor.png") }}" alt="Bodor" class="w-full" /></a>
+                <a href="https://www.cms-industrie.fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/CMS.png") }}" alt="CMS" class="w-full" /></a>
+                <a href="https://www.fanuc.eu/fr/fr" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Fanuc.jpg") }}" alt="Fanuc" class="w-full" /></a>
+                <a href="https://hexagon.com/fr/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Hexagon.png") }}" alt="Hexagon" class="w-full" /></a>
+                <a href="https://www.kencnc.com/" target="_blank" class="w-[200px]"><img src="{{ asset("build/images/bandeau/Ken.png") }}" alt="Ken" class="w-full" /></a>
+            </div>
+        </marquee>
+    </div>
+    <div class="w-5/6 flex lg:flex-row flex-col-reverse items-center justify-between lg:space-x-6 lg:mt-20 mt-20">
+        <div class="lg:w-1/2 w-full flex flex-col items-center justify-center h-full relative lg:mt-0 mt-8">
+            <img src="{{ asset("build/images/pres1.png") }}" alt="Image présentation" class="lg:w-1/2 w-5/6 -skew-x-6">
+            <div class="absolute lg:w-1/2 w-5/6 h-full border-8 border-[#D7D960] -skew-x-6 mt-16 mr-16 -z-10"></div>
+        </div>
+
+        <div class="lg:w-1/2 w-full flex flex-col items-center space-y-10">
+            <div class="font-bold lg:text-5xl text-3xl relative flex justify-center items-center">
+                <h2 class="ombrage">OMNITECHNIQUE, C'EST QUOI ?</h2>
+                <div class="absolute -z-10 lg:-left-5 -left-2 bg-[#D7D960] lg:w-16 w-10 lg:h-20 h-12 shadow-xl formes"></div>
+            </div>
+            <p>Depuis 1991, nous vous offrons des produits innovants de haute qualité. Notre expérience, forgée par nos commerciaux au fil de partenariats de longue date avec les fabricants de machines-outils les plus prestigieux, nous permet de vous proposer une sélection exceptionnelle.</p>
+        </div>
+    </div>
+
+    <div class="w-full flex flex-row items-center justify-center lg:mt-44 mt-24 lg:py-20 py-16 relative">
+        <img src="{{ asset("build/images/bg-bleu.png") }}" alt="Background bleu" class="h-full w-full object-cover absolute -z-10">
+        <div class="w-5/6 bg-white/60 flex justify-center items-center py-8 px-5 text-white font-semibold lg:text-3xl text-2xl relative">
+            <img src="{{ asset("build/images/guillemets.png") }}" alt="Guillemets" class="absolute left-0 top-0 ml-2 -mt-6 lg:w-16 w-12">
+            <p>QUAND POLYVALENCE RIME AVEC PERFORMANCE DEPUIS 1991</p>
+            <img src="{{ asset("build/images/guillemets2.png") }}" alt="Guillemets" class="absolute right-0 bottom-0 mr-2 -mb-6 lg:w-16 w-12">
+        </div>
+    </div>
+
+    <div class="w-5/6 flex lg:flex-row flex-col items-center justify-between lg:space-x-6 space-y-8 lg:mt-44 mt-20">
+        <div class="lg:w-1/2 w-full flex flex-col items-center">
+            <div class="font-bold lg:text-5xl text-3xl relative flex justify-center items-center">
+                <h2 class="ombrage">NOS PRODUITS</h2>
+                <div class="absolute -z-10 lg:-left-5 -left-2 bg-[#D7D960] lg:w-16 w-10 lg:h-20 h-12 shadow-xl formes"></div>
+            </div>
+            <p class="w-full pt-10">Nous accompagnons les entreprises dans l'intégration de nouvelles technologies, que ce soit pour des machines neuves ou d'occasion :</p>
+            <ul class="w-full list-disc list-inside space-y-2 pt-4">
+                <li>Centre d'usinage 3 et 5 axes</li>
+                <li>Centre de tournage horizontal et vertical, multi-axes</li>
+                <li>Électro-érosion et découpe au jet d'eau</li>
+                <li>Découpe laser</li>
+                <li>Machine de contrôle tridimensionnelle</li>
+                <li>Scanner</li>
+            </ul>
+        </div>
+
+        <div class="lg:w-1/2 w-full flex flex-col items-center justify-center h-full relative">
+            <img src="{{ asset("build/images/pres2.png") }}" alt="Image présentation" class="lg:w-1/2 w-5/6 -skew-x-6">
+            <div class="absolute lg:w-1/2 w-5/6 h-full border-8 border-[#D7D960] -skew-x-6 mt-16 ml-16 -z-10"></div>
+        </div>
+    </div>
+
+    <div class="w-5/6 flex lg:flex-row flex-col-reverse items-center justify-between lg:space-x-6 lg:mt-32 mt-24">
+        <div class="lg:w-1/2 w-full flex flex-col items-center justify-center h-full relative mt-10">
+            <img src="{{ asset("build/images/ardennescn.png") }}" alt="Image présentation" class="lg:w-3/4 w-5/6 skew-y-6">
+            <div class="absolute lg:w-3/4 w-5/6 h-full border-8 border-[#D7D960] skew-y-6 mt-16 ml-16 -z-10"></div>
+        </div>
+
+        <div class="lg:w-1/2 w-full flex flex-col items-center space-y-10">
+            <div class="flex items-center justify-center lg:w-1/6 w-1/3">
+                <img src="{{ asset("build/images/logo-ardennes-cn.png") }}" alt="Logo Ardennes CN">
+            </div>
+            <p>La création de la société Ardennes CN Programmation remonte à la fin de l’année 1991. A l’origine de cette société, M. François Clarin était alors employé au service commercial d’un grand groupe de logiciels CFAO, le groupe MISSLER. Ardennes CN, c’est un bâtiment de production de 5000m² à Nouzonville dans les Ardennes.</p>
+            <div class="text-white lg:text-3xl text-2xl">
+                <a href="https://www.ardennes-cn.com/" target="_blank" class="lg:py-3 lg:px-8 py-2 px-6 bg-[#294690] rounded-full">Ardennes CN</a>
+            </div>
+        </div>
+    </div>
+    <div class="w-5/6 flex flex-col justify-center items-center lg:mt-28 mt-20 lg:text-4xl text-2xl space-y-2">
+        <p>Z.A. DEVANT NOUZON - 08700 NOUZONVILLE</p>
+        <p>03 24 59 02 89 | contact@ardennes-cn.com</p>
+    </div>
+    <div class="w-full mt-10">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d883.6653597913189!2d4.729793852763718!3d49.81798991536582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea0e9f1da94c2b%3A0x587266ffa80dcb60!2sArdennes%20CN!5e0!3m2!1sfr!2sfr!4v1684155331379!5m2!1sfr!2sfr" class="w-full"></iframe>
+    </div>
+{% endblock %}

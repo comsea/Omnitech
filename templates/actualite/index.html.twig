@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OMNITECHNIQUE | Actualité{% endblock %}
+
+{% block header %}
+    <div class="lg:h-[50vh] h-[40vh] w-full flex flex-col justify-center items-center relative">
+        <video autoplay muted loop class="h-full w-full object-cover absolute -z-10">
+            <source src="{{ asset("build/videos/bg.mp4") }}" type="video/mp4" class="h-full w-full">
+        </video>
+        <div class="w-full flex flex-col justify-center items-center space-y-10">
+            <img src="{{ asset("build/images/logo.png") }}" alt="Logo Omnitechnique" class="lg:w-1/3 w-3/4">
+            {% if news != null and news.ispublished == 1 %}
+                <h1 class="text-white font-bold lg:text-7xl text-4xl text-center px-4">ACTUALITÉ</h1>
+            {% else %}
+                <h1 class="text-red-500 font-bold lg:text-7xl text-4xl text-center px-4">Actualité non trouvable</h1>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %} 
+
+{% block body %}
+    <div class="w-full flex flex-col justify-center items-center relative">
+        {% if news != null and news.ispublished == 1 %}
+            <div class="w-5/6 lg:mt-32 mt-16 flex lg:flex-row flex-col-reverse items-start justify-between">
+                <div class="lg:w-[40%] w-full grid grid-cols-2 lg:gap-10 gap-4 mt-8">
+                    <img src="{{ asset(base_path ~ '/' ~ news.image) }}" alt="Image présentation" class="w-full h-full object-cover col-span-2 border-8 border-[#294690]">
+                    {% for images in news.gallery %}
+                        <img src="{{ asset(base_path ~ '/' ~ images.path) }}" alt="Image présentation" class="w-full h-full object-cover border-8 border-[#294690]">
+                    {% endfor %}
+                </div>
+                <div class="lg:w-[55%] w-full flex flex-col items-start lg:mt-8 mt-4 space-y-4">
+                    <div class="font-bold lg:text-5xl text-3xl relative flex justify-center items-center mb-6 lg:ml-10 ml-4">
+                        <h2 class="ombrage">{{ news.title }}</h2>
+                        <div class="absolute -z-10 lg:-left-5 -left-2 bg-[#D7D960] lg:w-16 w-10 lg:h-20 h-12 shadow-xl formes"></div>
+                    </div>
+                    <div>
+                        <p class="lg:text-3xl text-2xl font-semibold text-[#294690]">{{ news.subtitle }}</p>
+                        <p class="font-semibold text-[#D7D960]">{{ news.newsCategory.name }}</p>
+                    </div>
+                    <div class="">
+                        {{ news.description|raw }}
+                    </div>
+                </div>
+            </div>
+            <div class="w-5/6 mt-6 lg:text-lg text-base text-gray-500">
+                <p>Créé le : {{ news.createdAt|format_datetime(locale='fr', pattern='dd MMMM YYYY') }}</p>
+                <p>Dernière modification le : {{ news.updatedAt|format_datetime(locale='fr', pattern='dd MMMM YYYY') }}</p>
+            </div>
+        {% else %}
+        <div class="mt-12">
+            <p class="text-3xl font-bold text-red-500">Bonjour, l'actualité que vous essayer de voir n'est pas disponnible ou n'éxiste pas.</p>
+        </div>
+    {% endif %}
+        <div class="absolute w-1/3 h-1/2 border-8 border-[#D7D960]/30 skew-y-6 -z-10 top-0 right-0"></div>
+        <div class="absolute w-1/3 h-1/2 border-8 border-[#D7D960]/30 skew-y-6 -z-10 bottom-0 left-0"></div>
+    </div>
+    <div class="w-5/6 flex flex-col justify-center items-center mt-10 lg:text-4xl text-2xl space-y-2">
+        <p>Z.A. DEVANT NOUZON - 08700 NOUZONVILLE</p>
+        <p>03 24 59 02 89 | contact@ardennes-cn.com</p>
+    </div>
+    <div class="w-full mt-10">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d883.6653597913189!2d4.729793852763718!3d49.81798991536582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea0e9f1da94c2b%3A0x587266ffa80dcb60!2sArdennes%20CN!5e0!3m2!1sfr!2sfr!4v1684155331379!5m2!1sfr!2sfr" class="w-full"></iframe>
+    </div>
+{% endblock %}

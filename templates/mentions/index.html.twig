@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OMNITECHNIQUE | Présentation{% endblock %}
+
+{% block header %}
+    <div class="lg:h-[50vh] h-[40vh] w-full flex flex-col justify-center items-center relative">
+        <video autoplay muted loop class="h-full w-full object-cover absolute -z-10">
+            <source src="{{ asset("build/videos/bg.mp4") }}" type="video/mp4" class="h-full w-full">
+        </video>
+        <div class="w-full flex flex-col justify-center items-center space-y-10">
+            <img src="{{ asset("build/images/logo.png") }}" alt="Logo Omnitechnique" class="lg:w-1/3 w-3/4">
+            <h1 class="text-white font-bold lg:text-7xl text-4xl text-center px-4">MENTIONS LÉGALES</h1>
+        </div>
+    </div>
+{% endblock %} 
+
+{% block body %}
+    <div class="w-5/6 flex lg:flex-col flex-col items-center justify-between lg:mt-32 mt-20 lg:mb-32 mb-20 space-y-8">
+        <p class="w-full">Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l’économie numérique, il est précisé aux utilisateurs du site globalaxe.fr l’identité des différents intervenants dans le cadre de sa réalisation et de son suivi.</p>
+        <h3 class="font-bold text-3xl w-full">Propriétaire</h3>
+        <p class="w-full">SARL OMNITECHNIQUE MACHINES OUTILS - n°Siren 828518134 - n°Siret 82851813400014 - n° TVA Intracommunautaire FR30828518134 - Z.A Devant Nouzon, 08700 Nouzonville</p>
+        <h3 class="font-bold text-3xl w-full">Conception et réalisation</h3>
+        <p class="w-full">Agence de Communication COMSEA - Site Internet : www.comsea.fr - Email : contact@comsea.fr</p>
+        <h3 class="font-bold text-3xl w-full">Responsable de publication</h3>
+        <p class="w-full">Quentin CLARIN - quentin.clarin@ardennes-cn.com</p>
+        <h3 class="font-bold text-3xl w-full">Hébergeur</h3>
+        <p class="w-full">Le site omnitechnique.com est hébergé par la société :</p>
+        <p class="w-full">OVH, 2 RUE KELLERMANN 59100 ROUBAIX</p>
+        <h3 class="font-bold text-3xl w-full">Propriété Intellectuelle</h3>
+        <p class="w-full">Le présent site Internet pris dans sa globalité et chacun des éléments qui le composent pris indépendamment, notamment les programmes et développements spécifiques et les contenus incluant des données, textes, images fixes ou animées, logotypes, sons, graphiques, fichiers, sont la propriété exclusive du responsable de la publication, du créateur du site Internet ou de tiers qui lui ont concédé une licence. Toute représentation totale ou partielle du site ou de l’un des éléments qui le composent sans l’autorisation expresse du titulaire des droits de propriété intellectuelle est interdite et constituerait une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle.</p>
+        <h3 class="font-bold text-3xl w-full">Nous contacter</h3>
+        <p class="w-full">par email : quentin.clarin@ardennes-cn.com</p>
+    </div>
+{% endblock %}

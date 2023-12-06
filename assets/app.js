@@ -50,3 +50,18 @@ const handleClosure = event => !navList.contains(event.target) && hide()
 
 window.addEventListener('click', handleClosure)
 window.addEventListener('focusin', handleClosure)
+
+// Tabs
+const boutons = document.querySelectorAll('.oui');
+
+boutons.forEach(bouton => {
+  bouton.addEventListener('click', () => {
+    // Retire la classe 'selected' de tous les boutons
+    boutons.forEach(btn => {
+      btn.classList.remove('selected');
+    });
+
+    // Ajoute la classe 'selected' uniquement au bouton cliqué
+    bouton.classList.add('selected');
+  });
+});

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/slick/slick.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/slick/slick-theme.css') }}"/>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body class="w-full flex flex-col items-center lg:text-2xl text-xl">
+        {% block header %}{% endblock %} 
+        <div class="sticky top-0 bg-[#294690] text-white text-xl font-semibold px-5 py-4 w-full flex z-40 flex-row lg:justify-center justify-end items-center shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-px lg:mt-0">
+            <div id="nav" class="hidden lg:flex flex-row items-center lg:space-x-12">
+                <div class="flex lg:flex-row flex-col lg:items-center items-start lg:space-x-12 lg:space-y-0 space-y-2 lg:w-auto w-1/2">
+                    <a href="{{ path('app_index') }}" title="Accueil"  class="hover:text-[#D7D960]">Accueil</a>
+                    <a href="{{ path('app_presentation') }}" title="Présentation" class="hover:text-[#D7D960]">Présentation</a>
+                    <a href="{{ path('app_produits') }}" title="Produits" class="hover:text-[#D7D960]">Produits</a>
+                    <a href="{{ path('app_services') }}" title="Services" class="hover:text-[#D7D960]">Services</a>
+                    <a href="{{ path('app_ventes') }}" title="Machines stock" class="hover:text-[#D7D960] border border-white px-2 py-1 hover:border-[#D7D960]">Machines stock</a>
+                    <a href="{{ path('app_actualites') }}" title="Actualités" class="hover:text-[#D7D960]">Actualités</a>
+                    <a href="{{ path('app_recrutement') }}" title="Recrutement" class="hover:text-[#D7D960]">Recrutement</a>
+                </div>
+                <div class="w-1/2 lg:w-auto flex flex-col items-end">
+                    <a href="{{ path('app_contact') }}" class="bg-[#D7D960] hover:bg-white text-[#294690] rounded px-4 py-2" title="Contact">Contact</a>
+                </div>
+            </div>
+            <div id="toggle-button" class="my-2 text-lg text-[#D7D960] lg:hidden flex ml-3">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        {% block body %}{% endblock %}
+        <div class="w-full bg-[#294690] text-white lg:text-xl text-base font-semibold px-5 py-4 flex flex-row lg:justify-center justify-end items-center mt-px lg:mt-0 text-center">
+            <p>2023 Copyright : <a href="https://comsea.fr/" class="hover:underline">COMSEA</a>   |   Tous droits Réservés   |   <a href="{{ path('app_mention') }}" class="hover:underline">Mentions légales</a>   |   <a href="{{ path('app_politique') }}" class="hover:underline">Politique de confidentialité</a></p>
+        </div>
+        
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="{{ asset("build/slick/slick.min.js") }}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+
+        <!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+        <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+        <script type="text/javascript" charset="UTF-8">
+        document.addEventListener('DOMContentLoaded', function () {
+        cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"dark","language":"fr","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"Omnitechnique"});
+        });
+        </script>
+
+        <!-- Google Analytics -->
+        <!-- Google tag (gtag.js) -->
+        <script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-RVSXMBXJJ3"></script>
+        <script type="text/plain" data-cookie-consent="tracking">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-RVSXMBXJJ3');
+        </script>
+        <!-- end of Google Analytics-->
+
+        <noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
+        <!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+    </body>
+</html>

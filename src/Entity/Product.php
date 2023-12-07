@@ -47,6 +47,12 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?ProductCategory $category = null;
 
+    #[ORM\ManyToOne(inversedBy: 'product')]
+    private ?ProductDivision $productDivision = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?ProductSubDivision $subDivision = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -180,6 +186,30 @@ class Product
     public function setCategory(?ProductCategory $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getProductDivision(): ?ProductDivision
+    {
+        return $this->productDivision;
+    }
+
+    public function setProductDivision(?ProductDivision $productDivision): self
+    {
+        $this->productDivision = $productDivision;
+
+        return $this;
+    }
+
+    public function getSubDivision(): ?ProductSubDivision
+    {
+        return $this->subDivision;
+    }
+
+    public function setSubDivision(?ProductSubDivision $subDivision): self
+    {
+        $this->subDivision = $subDivision;
 
         return $this;
     }

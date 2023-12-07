@@ -28,9 +28,13 @@ class ProductSubCategory
     #[ORM\JoinColumn(nullable: false)]
     private ?ProductCategory $category = null;
 
+    #[ORM\OneToMany(mappedBy: 'subCategory', targetEntity: ProductDivision::class)]
+    private Collection $productDivisions;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->productDivisions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,5 +111,35 @@ class ProductSubCategory
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, ProductDivision>
+     */
+    public function getProductDivisions(): Collection
+    {
+        return $this->productDivisions;
+    }
+
+    public function addProductDivision(ProductDivision $productDivision): self
+    {
+        if (!$this->productDivisions->contains($productDivision)) {
+            $this->productDivisions->add($productDivision);
+            $productDivision->setSubCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductDivision(ProductDivision $productDivision): self
+    {
+        if ($this->productDivisions->removeElement($productDivision)) {
+            // set the owning side to null (unless already changed)
+            if ($productDivision->getSubCategory() === $this) {
+                $productDivision->setSubCategory(null);
+            }
+        }
+
+        return $this;
     }
 }

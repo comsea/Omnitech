@@ -57,6 +57,12 @@ class ProductCrudController extends AbstractCrudController
                 ->setLabel('Catégorie'),
             AssociationField::new('sub_category')
                 ->setLabel('Sous catégorie'),
+            AssociationField::new('productDivision')
+                ->setLabel('Division')
+                ->setRequired(false),
+            AssociationField::new('subDivision')
+                ->setLabel('Sous division')
+                ->setRequired(false),
             TextEditorField::new('description')
                 ->setLabel('Description'),
             ImageField::new('file')

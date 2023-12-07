@@ -27,6 +27,9 @@
                 </form>
             {% endfor %}
         </div>
+
+        {# filtre #}
+
         {% if app.request.get('id_cat') is empty %}
         {% else %}
             <div class="w-[95%] bg-[#D5DDEF] p-4 text-[#294690] text-lg space-y-1">
@@ -34,6 +37,7 @@
                     <input type="hidden" name="id_cat" value="{{ app.request.get('id_cat') }}">
                     <div class="flex flex-row justify-between">
                         <div class="flex flex-col w-2/5">
+                            <p class='underline'>Sous catégorie :</p>
                             {% for productsubcategory in productsubcategorys %}
                                 {% if app.request.get('id_cat') == productsubcategory.category.id %}
                                     <div class="flex flex-row items-center space-x-3">
@@ -59,7 +63,62 @@
                 </form>
             </div>
         {% endif %}
+
+        {% if app.request.get('id_cat') is empty or app.request.get('id_scat') is empty %}
+        {% else %}
+            <div class="w-[95%] bg-[#D5DDEF] p-4 text-[#294690] text-lg space-y-1">
+                <form action="" method="get" class="flex flex-col w-full">
+                    <input type="hidden" name="id_cat" value="{{ app.request.get('id_cat') }}">
+                    <input type="hidden" name="id_scat" value="{{ app.request.get('id_scat') }}">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col w-2/5">
+                            <p class='underline'>Division :</p>
+                            {% for productsdivision in productsdivisions %}
+                                {% if app.request.get('id_scat') == productsdivision.subCategory.id %}
+                                    <div class="flex flex-row items-center space-x-3">
+                                        <input type="radio" name="id_div" id="{{ productsdivision.title }}" value="{{ productsdivision.id }}">
+                                        <label for="{{ productsdivision.title }}">{{ productsdivision.title }}</label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <input type="submit" value="Rechercher" class="bg-[#294690] text-white px-3 py-1">
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+
+        {% if app.request.get('id_cat') is empty or app.request.get('id_scat') is empty or app.request.get('id_div') is empty %}
+        {% else %}
+            <div class="w-[95%] bg-[#D5DDEF] p-4 text-[#294690] text-lg space-y-1">
+                <form action="" method="get" class="flex flex-col w-full">
+                    <input type="hidden" name="id_cat" value="{{ app.request.get('id_cat') }}">
+                    <input type="hidden" name="id_scat" value="{{ app.request.get('id_scat') }}">
+                    <input type="hidden" name="id_div" value="{{ app.request.get('id_div') }}">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col w-2/5">
+                            <p class='underline'>Sous Division :</p>
+                            {% for productsubdivision in productsubdivisions %}
+                                {% if app.request.get('id_div') == productsubdivision.subDivision.id %}
+                                    <div class="flex flex-row items-center space-x-3">
+                                        <input type="radio" name="id_sdiv" id="{{ productsubdivision.title }}" value="{{ productsubdivision.id }}">
+                                        <label for="{{ productsubdivision.title }}">{{ productsubdivision.title }}</label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <input type="submit" value="Rechercher" class="bg-[#294690] text-white px-3 py-1">
+                    </div>
+                </form>
+            </div>
+        {% endif %}
     </div>
+
+    {# Produits #}
 
     {% if app.request.get('id_cat') is empty %}
         <div class="mt-20 w-5/6 grid lg:grid-cols-4 grid-cols-1 lg:gap-10 gap-6">
@@ -90,15 +149,49 @@
                             </div>
                         </div>
                     {% elseif app.request.get('id_scat') == product.subcategory.id and app.request.get('id_mar') is empty %}
-                        <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
-                            <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
-                            <div class="w-full flex justify-center">
-                                <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                        {% if app.request.get('id_scat') == product.subcategory.id and app.request.get('id_div') is empty %}
+                            <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                                <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                                <div class="w-full flex justify-center">
+                                    <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                                </div>
+                                <div class="w-full flex justify-center">
+                                    <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                                </div>
                             </div>
-                            <div class="w-full flex justify-center">
-                                <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                        {% elseif app.request.get('id_scat') is empty and app.request.get('id_div') == product.productDivision.id and product.productDivision.id != null %}
+                            <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                                <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                                <div class="w-full flex justify-center">
+                                    <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                                </div>
+                                <div class="w-full flex justify-center">
+                                    <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                                </div>
                             </div>
-                        </div>
+                        {% elseif app.request.get('id_scat') == product.subcategory.id and app.request.get('id_div') == product.productDivision.id %}
+                            {% if app.request.get('id_div') == product.productDivision.id and app.request.get('id_sdiv') is empty %}
+                                <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                                    <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                                    <div class="w-full flex justify-center">
+                                        <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                                    </div>
+                                    <div class="w-full flex justify-center">
+                                        <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                                    </div>
+                                </div>
+                            {% elseif app.request.get('id_div') == product.productDivision.id and app.request.get('id_sdiv') == product.subDivision.id %}
+                                <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
+                                    <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>
+                                    <div class="w-full flex justify-center">
+                                        <img src="{{ asset(base_path ~ '/' ~ product.image) }}" alt="Image présentation" class="lg:w-5/6 w-4/5 h-full object-cover">
+                                    </div>
+                                    <div class="w-full flex justify-center">
+                                        <img src="{{ asset(base_path ~ '/' ~ product.supplier.logo) }}" alt="Image présentation" class="lg:w-2/3 w-1/2 h-full object-cover max-h-16">
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
                     {% elseif app.request.get('id_scat') is empty and app.request.get('id_mar') == product.supplier.id %}
                         <div class="border-4 border-[#294690] flex flex-col items-center p-4 text-[#294690] space-y-4">
                             <h3 class="uppercase lg:text-3xl text-2xl font-medium">{{ product.title }}</h3>

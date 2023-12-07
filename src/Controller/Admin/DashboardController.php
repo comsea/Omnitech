@@ -11,7 +11,9 @@ use App\Entity\News;
 use App\Entity\NewsCategory;
 use App\Entity\Product;
 use App\Entity\ProductCategory;
+use App\Entity\ProductDivision;
 use App\Entity\ProductSubCategory;
+use App\Entity\ProductSubDivision;
 use App\Entity\ProductSupplier;
 use App\Entity\Supplier;
 use App\Entity\User;
@@ -59,6 +61,8 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Produits', 'fas fa-industry', Product::class),
                 MenuItem::linkToCrud('Catégories des produits', 'fa fa-tags', ProductCategory::class),
                 MenuItem::linkToCrud('Sous catégories des produits', 'fa fa-tags', ProductSubCategory::class),
+                MenuItem::linkToCrud('Divisions des produits', 'fa fa-tags', ProductDivision::class),
+                MenuItem::linkToCrud('Sous divisions des produits', 'fa fa-tags', ProductSubDivision::class),
                 MenuItem::linkToCrud('Marques des produits', 'fa fa-industry', ProductSupplier::class),
             ]),
             MenuItem::linkToCrud('Galerie d\'images', 'fa fa-picture-o', Image::class),
